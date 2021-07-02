@@ -1,1 +1,6 @@
 /env
+/vaccine/adminportal/migrations
+/vaccine/adminportal/__pycache__
+/vaccine/registration/migrations
+/vaccine/registration/__pycache__
+vaccine/vaccine/__pycache__

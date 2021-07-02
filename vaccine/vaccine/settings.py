@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
+    'adminportal',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +59,7 @@ ROOT_URLCONF = 'vaccine.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,3 +153,12 @@ AUTH_ADFS = {
 LOGIN_URL = "django_auth_adfs:login"
 LOGIN_REDIRECT_URL = "register"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587  
+EMAIL_HOST_USER = 'swc@iitg.ac.in'
+SERVER_EMAIL = EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD = ''

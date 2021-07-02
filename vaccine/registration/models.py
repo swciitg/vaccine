@@ -10,8 +10,5 @@ class Benificial(models.Model):
     contact_1=models.IntegerField(default=0)
     contact_2=models.IntegerField(default=0)
     is_registered=models.BooleanField(default=False)
-    dose_num=models.IntegerField(default=1)
-    vaccine_type=models.CharField(default="", max_length=100)
     is_delivered=models.BooleanField(default=False)
     slot_timing = models.DateTimeField(null=True)
-    is_vaccinated=models.BooleanField(default=False)

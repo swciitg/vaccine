@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>This is home page</h1>
+
+    <form action="{% url 'send_mail' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="vaccine_1">covishield</label>
+            <input id="vaccine_1" name="name" type="radio" value="1">
+        </div>
+        <div>
+            <label for="vaccine_2">covaxin</label>
+            <input id="vaccine_2" name="name" type="radio" value="2">
+        </div>
+        <div>
+            <label for="doses">Number of doses</label>
+            <input id="doses" name="doses" type="number">
+        </div>
+        <div>
+            <label for="slot_1">9 to 12</label>
+            <input type="radio" name="slot" id="slot_1" value="0">
+            <label for="slot_2">12 to 3</label>
+            <input type="radio" name="slot" id="slot_2" value="1">
+            <label for="slot_3">3 to 5</label>
+            <input type="radio" name="slot" id="slot_3" value="2">
+        </div>
+        <div>
+            <label for="date">Date of availablity</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <input type="submit", value="submit">
+        
+    </form>
+</body>
+</html>

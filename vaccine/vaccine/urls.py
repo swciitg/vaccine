@@ -23,4 +23,5 @@ urlpatterns = [
     path('vaccination/oauth2/', include('django_auth_adfs.urls')),
     path('vaccination/admin/', admin.site.urls),
     path('vaccination/registration/', include('registration.urls')),
+    path('vaccination/staff/', include('adminportal.urls')),
 ]
