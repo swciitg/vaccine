@@ -1,4 +1,5 @@
 from django.http import request
+from django.urls  import reverse
 from django.http.request import HttpRequest
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
@@ -98,4 +99,5 @@ def register(request):
             
         except:
             print("none")
+        return render(request,'error.html',{'message':'You Have successfully registered. You will get a mail when you are allotted a slot'})
     return render(request,'register.html',{'roll_number':roll_number,'contact_1':contact_1,'contact_2':contact_2})

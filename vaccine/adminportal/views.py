@@ -21,6 +21,7 @@ slot_dict = {
     '1': time(11),
     '2': time(13)
 }
+
 @staff_member_required
 def send_email(request):
     if request.method=="POST":
@@ -62,3 +63,17 @@ def send_email(request):
             print('errorr')
             # print traceback.format_exc() # you probably want to add a log here instead of console printout
         return redirect('index')
+
+@staff_member_required
+def list(request,date,slot_no):
+    return render(request,'list.html' , {"benificials":Benificial.objects.filter(slot_timing=datetime.combine(datetime.strptime(date,"%Y-%m-%d"),slot_dict[str(slot_no)]))})
+
+@staff_member_required
+def slots_created(request):
+    dicti={}
+    for slots in Addvaccines.objects.all():
+        if slots.date.strftime("%Y-%m-%d") in dicti:
+            dicti[slots.date.strftime("%Y-%m-%d")].append(slots.slot)
+        else:
+            dicti[slots.date.strftime("%Y-%m-%d")]=[slots.slot]
+    return render(request,'available_slots.html',{'slots':dicti})

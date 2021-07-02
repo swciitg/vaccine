@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaccinated</title>
+    <title>slots</title>
 </head>
 <body>
-    {%for i in benificial%}
-        <p>name of fucker is: {{i.user.first_name}}</p>
-        <p>email: {{i.user.username}}</p>
-        <p>vaccinated on {{i.slot_timing}}</p>
+    {% for key, value in slots.items %} 
+    <li>{{key}}</li>
+    
+    {% for i in value %}
+        {{i}}
+    {% endfor %}
+        
     {% endfor %}
 </body>
 </html>
