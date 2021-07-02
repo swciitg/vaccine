@@ -33,14 +33,14 @@ def is_verified(function):
                         beneficial.save()
                     # got vaccinated 2 times , cant do again    
                     elif beneficial.dose_num != 2:
-                        return render('error.html',{'message':'You cant register again'})
+                        return render(request,'error.html',{'message':'You cant register again'})
                     # have to wait until 60 days is over
                     else:
                         message = 'wait till '+ string(beneficial.slot_timings.date() + timedelta(60))+ ' to register again'
                         return render(request,'error.html',{'message':message})
                 #slot is not provided or upcoming        
                 else:
-                    return render('error.html',{'message':'You Are already registered. You will get a mail when you are allotted a slot'})
+                    return render(request,'error.html',{'message':'You Are already registered. You will get a mail when you are allotted a slot'})
         return function(request, *args, **kwargs)  
     return wrap
     
