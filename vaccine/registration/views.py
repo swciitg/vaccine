@@ -10,7 +10,7 @@ from functools import wraps
 
 def is_verified(function):
     @wraps(function)
-    def wrap(request, *args, **kwrgs):
+    def wrap(request, *args, **kwargs):
         #not a first time user
         if Benificial.objects.filter(user=request.user).exists():
             beneficial = Benificial.objects.get(user=request.user)
@@ -37,11 +37,11 @@ def is_verified(function):
                     # have to wait until 60 days is over
                     else:
                         message = 'wait till '+ string(beneficial.slot_timings.date() + timedelta(60))+ ' to register again'
-                        return render('error.html',{'message':message})
+                        return render(request,'error.html',{'message':message})
                 #slot is not provided or upcoming        
                 else:
                     return render('error.html',{'message':'You Are already registered. You will get a mail when you are allotted a slot'})
-
+        return function(request, *args, **kwargs)  
     return wrap
     
     
@@ -68,7 +68,7 @@ def register(request):
             beneficial.contact_2=request.POST['contact_2'] 
             beneficial.save()
         else:
-            Benificial.create(
+            Benificial.objects.create(
                 user=request.user,
                 roll_number=request.POST['rollNumber'],
                 is_registered=True,
@@ -76,5 +76,5 @@ def register(request):
                 contact_1=request.POST['contact_1'],
                 contact_2=request.POST['contact_2']    
             )
-                
+    print("hm return me aa gye")
     return render(request,'register.html',{'roll_number':roll_number,'contact_1':contact_1,'contact_2':contact_2})
